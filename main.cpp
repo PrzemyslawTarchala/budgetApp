@@ -3,7 +3,7 @@
 
 using namespace std;
 
-
+//It will be a class
 struct Date{
     int year;
     int month;
@@ -86,21 +86,5 @@ bool isValidDate(int day, int month, int year){
 
 int main()
 {
-    Date dataOne, dataTwo;
-
-    dataOne.year = 2002;
-    dataOne.month = 11;
-    dataOne.day = 2;
-
-    dataTwo.year = 2002;
-    dataTwo.month = 10;
-    dataTwo.day = 2;
-
-    if (isSmallerOrSameDate(dataOne, dataTwo)){
-        cout << "Data pierwsza jest mniejsza lub taka sama od daty 2" << endl;
-    }
-    else {
-        cout << "Data pierwsza jest wieksza od daty 2" << endl;
-    }
     return 0;
 }
