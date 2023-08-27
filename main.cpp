@@ -10,41 +10,6 @@ struct Date{
     int day;
 };
 
-/*
-bool isSmallerOrSameDate(Date smallerDate, Date compareDate){
-
-    if(smallerDate.year > compareDate.year){
-        return false;
-    }
-    else{
-        if(smallerDate.month > compareDate.month && smallerDate.month != compareDate.month){
-            return false;
-        }
-        else{
-            if(smallerDate.day >= compareDate.day){
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-
-bool isSmallerOrSameDate(Date smallerDate, Date compareDate){
-
-    if(isBiggerNumebr(smallerDate.year, compareDate.year)){
-        return false;
-    }
-    if(isBiggerNumebr(smallerDate.month, compareDate.month)){
-        return false;
-    }
-    if(isBiggerNumebr(smallerDate.day, compareDate.day)){
-        return false;
-    }
-}
-*/
-
-
 bool isSmallerOrSameDate(Date smallerDate, Date compareDate){
     if(smallerDate.year > compareDate.year){
         return false;
