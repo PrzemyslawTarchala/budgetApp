@@ -1,6 +1,6 @@
 #include "UsersManager.h"
 
-UserManager::UserManager()
+//UserManager::UserManager()
 
 int UserManager::getLoggedInUserId(){
     return idLoggedInUser;
