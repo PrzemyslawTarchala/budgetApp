@@ -1,10 +1,13 @@
 #include <iostream>
-#include <ctime>
+
+#include "BudgetManagerApp.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    BudgetManagerApp budgetAppManager;
+
+    budgetAppManager.singUp();
     return 0;
 }

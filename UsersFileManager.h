@@ -15,7 +15,7 @@ class UsersFileManager{
 
 public:
     vector <User> laodUsersFromFile();
-    void saveUserToFile();
+    void saveUserToFile(User userToSave);
 };
 
 #endif

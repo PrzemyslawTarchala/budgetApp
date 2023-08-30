@@ -6,6 +6,7 @@
 
 #include "User.h"
 #include "UsersFileManager.h"
+#include "AuxiliaryMethods.h"
 
 using namespace std;
 
@@ -16,9 +17,10 @@ class UserManager{
     UsersFileManager userFileManager;
 
     User specifyNewUserData();
-    int getIfForNewUser();
-    bool isNewLoginAvailable();
-    string eneterTwiceSamePassword();
+    int getIdForNewUser();
+    bool isNewLoginAvailable(string newLogin);
+    string enterTwiceSamePassword();
+    string enterNewLogin();
 
 public:
 
@@ -26,7 +28,7 @@ public:
     int getLoggedInUserId();
 
     void signIn();
-    void signOut();
+    void signUp();
     void changeLoggedInUserPassword();
 };
 

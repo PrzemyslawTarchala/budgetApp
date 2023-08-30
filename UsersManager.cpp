@@ -6,27 +6,90 @@ int UserManager::getLoggedInUserId(){
     return idLoggedInUser;
 }
 
-User specifyNewUserData(){
+void UserManager::signIn(){
 
 }
 
-int getIfForNewUser(){
+void UserManager::signUp(){
+    User newUser;
+    newUser = specifyNewUserData();
+    userFileManager.saveUserToFile(newUser);
 
+
+/*
+    cout << "----NEW USER----\n\n";
+    cout << newUser.getId() << endl;
+    cout << newUser.getName() << endl;
+    cout << newUser.getLastname() << endl;
+    cout << newUser.getLogin() << endl;
+    cout << newUser.getPassword() << endl;
+*/
 }
-bool isNewLoginAvailable(){
 
+User UserManager::specifyNewUserData(){
+    User newUser;
+
+    //Nie powinno sie dac wpisac psutego imienia i nazwiska
+
+    newUser.setId(getIdForNewUser());
+    cout << "Enter name: ";
+    newUser.setName(AuxiliaryMethods::getWholeLine());
+    cout << "Enter lastname: ";
+    newUser.setLastname(AuxiliaryMethods::getWholeLine());
+    newUser.setLogin(enterNewLogin());
+    newUser.setPassword(enterTwiceSamePassword());
+    return newUser;
 }
 
-string eneterTwiceSamePassword(){
-
+int UserManager::getIdForNewUser(){
+    return 1;
 }
 
-void signIn(){
+string UserManager::enterNewLogin(){
 
+    string newLogin;
+    do{
+        cout << "Enter Login: ";
+        newLogin = AuxiliaryMethods::getWholeLine();
+        if (newLogin == ""){
+            cout << "You must enter Login.\n";
+            continue;
+        }
+    }while(isNewLoginAvailable(newLogin));
+    return newLogin;
 }
-void signOut(){
 
+
+bool UserManager::isNewLoginAvailable(string newLogin){
+    //trzeba otworzyc plik i sprawdzic czy dziala
+
+    if(users.size() == 0){
+        return false;
+    }
 }
-void changeLoggedInUserPassword(){
+
+string UserManager::enterTwiceSamePassword(){
+
+    string newPassword, doubleCheckPassword;
+
+    do{
+        cout << "Enter password: ";
+        newPassword = AuxiliaryMethods::getWholeLine();
+
+        if (newPassword == ""){
+            cout << "You must enter password: ";
+            continue;
+        }
+        cout << "Enter same password again: ";
+        doubleCheckPassword = AuxiliaryMethods::getWholeLine();
+
+        if (newPassword != doubleCheckPassword){
+            cout << "There is a diffrent beetwen both password. Try again.\n";
+        }
+    }while(newPassword != doubleCheckPassword);
+    return newPassword;
+}
+
+void UserManager::changeLoggedInUserPassword(){
 
 }
