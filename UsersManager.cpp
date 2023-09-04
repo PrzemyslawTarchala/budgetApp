@@ -42,6 +42,15 @@ User UserManager::specifyNewUserData(){
 }
 
 int UserManager::getIdForNewUser(){
+
+/*    if (users.empty()){
+        return 1;
+    }
+    else{
+        return users.back().getId() + 1;
+    }
+*/
+
     return 1;
 }
 
