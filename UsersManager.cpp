@@ -13,7 +13,7 @@ void UserManager::signIn(){
 void UserManager::signUp(){
     User newUser;
     newUser = specifyNewUserData();
-    userFileManager.saveUserToFile(newUser);
+    //userFileManager.saveUserToFile(newUser);
 
 
 /*
