@@ -9,26 +9,6 @@ UsersFileManager::UsersFileManager(){
 vector <User> UsersFileManager::laodUsersFromFile(){
 
 }
-/*
-string UsersFileManager::createPath(){
-
-    string file_path = __FILE__;
-    string dir_path = file_path.substr(0, file_path.rfind("\\"));
-    string newPath;
-
-    for (int i = 0; i < dir_path.length(); ++i){
-        if(dir_path[i] == '\\'){
-            newPath += "\\\\";
-        }
-        else{
-            newPath += dir_path[i];
-        }
-    }
-    newPath = newPath + "\\\\User.xml";
-    cout << newPath;
-    return newPath;
-}
-*/
 
 void UsersFileManager::saveUserToFile(User userToSave){
     ifstream file;
