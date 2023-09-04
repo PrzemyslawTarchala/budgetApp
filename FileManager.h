@@ -1,40 +1,14 @@
-#include "User.h"
+#ifndef FILEMANAGER_H
+#define FILEMANAGER_H
 
-void User::setId(int newId){
-    id = newId;
-}
+#include <iostream>
 
-void User::setName(string newName){
-    name = newName;
-}
+using namespace std;
 
-void User::setLastname(string newLastname){
-    lastname = newLastname;
-}
+class FileManager{
 
-void User::setLogin(string newLogin){
-    login = newLogin;
-}
+    public:
+    string createPathToFile(string fileName);
+};
 
-void User::setPassword(string newPassword){
-    password = newPassword;
-}
-
-int User::getId(){
-    return id;
-}
-string User::getName(){
-    return name;
-}
-
-string User::getLastname(){
-    return lastname;
-}
-
-string User::getLogin(){
-    return login;
-}
-string User::getPassword(){
-    return password;
-}
-
+#endif

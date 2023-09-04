@@ -12,14 +12,15 @@ using namespace std;
 int main()
 {
     BudgetManagerApp budgetAppManager;
+    //UsersFileManager usersFileManager;
 
-    //budgetAppManager.singUp();
+    budgetAppManager.singUp();
 
     //to delete
-    User user;
-    vector <User> usersTest;
-    UsersFileManager usersFileManager;
+    //User user;
+    //vector <User> usersTest;
+    //UsersFileManager usersFileManager;
 
-    usersFileManager.creatUserFileAndAddFirstUser();
+
     return 0;
 }

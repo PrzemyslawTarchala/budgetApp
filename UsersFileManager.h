@@ -7,22 +7,22 @@
 
 #include "User.h"
 #include "Markup.h"
+#include "FileManager.h"
 
 using namespace std;
 
-class UsersFileManager{
-    const string ACCES_PATH_TO_USER_FILE = "Users.xml";
-    CMarkup xml;
+class UsersFileManager : public FileManager{
 
-    string createPath();
-    //void creatUserFileAndAddFirstUser();
+    //CMarkup xml;
+    const string ACCES_PATH_TO_USER_FILE;
+    void creatUsersFileAndAddFirstUser(User userToSave);
+    void openFileAndSaveNewUser(User userToSave);
+    //CMarkup xml;
 
 public:
+    UsersFileManager();
     vector <User> laodUsersFromFile();
     void saveUserToFile(User userToSave);
-
-
-    void creatUserFileAndAddFirstUser();
 };
 
 #endif

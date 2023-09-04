@@ -1,40 +1,19 @@
-#include "User.h"
+#include "FileManager.h"
 
-void User::setId(int newId){
-    id = newId;
-}
+string FileManager::createPathToFile(string fileName){
 
-void User::setName(string newName){
-    name = newName;
-}
+    string filePath = __FILE__;
+    string dirPath = filePath.substr(0, filePath.rfind("\\"));
+    string newPath;
 
-void User::setLastname(string newLastname){
-    lastname = newLastname;
+    for (int i = 0; i < dirPath.length(); ++i){
+        if(dirPath[i] == '\\'){
+            newPath += "\\\\";
+        }
+        else{
+            newPath += dirPath[i];
+        }
+    }
+    newPath = newPath + fileName;
+    return newPath;
 }
-
-void User::setLogin(string newLogin){
-    login = newLogin;
-}
-
-void User::setPassword(string newPassword){
-    password = newPassword;
-}
-
-int User::getId(){
-    return id;
-}
-string User::getName(){
-    return name;
-}
-
-string User::getLastname(){
-    return lastname;
-}
-
-string User::getLogin(){
-    return login;
-}
-string User::getPassword(){
-    return password;
-}
-
