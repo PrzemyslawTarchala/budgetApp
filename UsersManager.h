@@ -24,12 +24,15 @@ class UserManager{
 
 public:
 
-    UserManger();
+    UserManager();
     int getLoggedInUserId();
 
     void signIn();
     void signUp();
     void changeLoggedInUserPassword();
+
+    //temp
+    void showUsers();
 };
 
 #endif

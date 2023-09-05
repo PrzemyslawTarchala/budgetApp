@@ -11,8 +11,12 @@ class BudgetManagerApp{
     UserManager userManager;
 
 public:
+
     void signIn();
     void singUp();
+    void changeLoggedInUserPassword();
+
+    void showUsers();
 };
 
 #endif
