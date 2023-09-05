@@ -1,29 +1,36 @@
 #include "UsersManager.h"
 
-//UserManager::UserManager()
+UserManager::UserManager(){
+    users = userFileManager.loadUsersFromFile();
+    idLoggedInUser = 0;
+}
 
 int UserManager::getLoggedInUserId(){
     return idLoggedInUser;
 }
 
 void UserManager::signIn(){
+    string login, password;
 
+    cout << "Enter login: ";
+    login = AuxiliaryMethods::getWholeLine();
+    cout << "Enter password: ";
+    password = AuxiliaryMethods::getWholeLine();
+
+    for (User singleUser : users){
+        if(singleUser.getLogin() == login && singleUser.getPassword() == password){
+            cout << "Logged";
+            idLoggedInUser = singleUser.getId(); //do zmiany ID loggedinuser powinno byc w usersFileManager
+            return;
+        }
+    }
+    cout << "Wrong Login or password";
 }
 
 void UserManager::signUp(){
     User newUser;
     newUser = specifyNewUserData();
-    //userFileManager.saveUserToFile(newUser);
-
-
-/*
-    cout << "----NEW USER----\n\n";
-    cout << newUser.getId() << endl;
-    cout << newUser.getName() << endl;
-    cout << newUser.getLastname() << endl;
-    cout << newUser.getLogin() << endl;
-    cout << newUser.getPassword() << endl;
-*/
+    userFileManager.saveUserToFile(newUser);
 }
 
 User UserManager::specifyNewUserData(){
@@ -43,15 +50,12 @@ User UserManager::specifyNewUserData(){
 
 int UserManager::getIdForNewUser(){
 
-/*    if (users.empty()){
+    if (users.empty()){
         return 1;
     }
     else{
         return users.back().getId() + 1;
     }
-*/
-
-    return 1;
 }
 
 string UserManager::enterNewLogin(){
@@ -100,5 +104,22 @@ string UserManager::enterTwiceSamePassword(){
 }
 
 void UserManager::changeLoggedInUserPassword(){
+    string newPassword;
+    cout << "Enter new password: ";
+    newPassword = AuxiliaryMethods::getWholeLine();
+    //walidacja typu --> nie moze byc pustego stringa
+    //potrzebujesz zapisac to do wektora od razu
+    userFileManager.saveNewUserPasswordToFile(newPassword, idLoggedInUser);
+}
 
+void UserManager::showUsers(){
+
+    if(users.empty()){
+        cout << "Pusto ";
+    }
+    else{
+        for (User singleUser : users){
+            cout << singleUser.getId() << endl;
+        }
+    }
 }

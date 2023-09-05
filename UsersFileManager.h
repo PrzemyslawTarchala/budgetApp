@@ -20,8 +20,9 @@ class UsersFileManager : public FileManager{
 public:
     UsersFileManager();
 
-    vector <User> laodUsersFromFile();
+    vector <User> loadUsersFromFile();
     void saveUserToFile(User userToSave);
+    void saveNewUserPasswordToFile(string newPassword, int idLoggedInUser);
 };
 
 #endif
