@@ -11,6 +11,7 @@ class AuxiliaryMethods{
 
 public:
     static string getWholeLine();
+    static char getSign();
 
 };
 
