@@ -11,25 +11,45 @@ int UserManager::getLoggedInUserId(){
 
 void UserManager::signIn(){
     string login, password;
+    int loginAttempt = 3;
 
-    cout << "Enter login: ";
-    login = AuxiliaryMethods::getWholeLine();
-    cout << "Enter password: ";
-    password = AuxiliaryMethods::getWholeLine();
+    system ("cls");
+    cout << "          SIGN IN\n";
+    cout << "----------------------------\n\n";
 
-    for (User singleUser : users){
-        if(singleUser.getLogin() == login && singleUser.getPassword() == password){
-            cout << "Logged";
-            idLoggedInUser = singleUser.getId(); //do zmiany ID loggedinuser powinno byc w usersFileManager
-            return;
-        }
+    if (users.empty()){
+        cout << "There is no users. Must sing up first.\n\n";
+        system ("pause");
+        return;
     }
-    cout << "Wrong Login or password";
+
+    for (int i = loginAttempt; i > 0; --i){
+        cout << "Enter login: ";
+        login = AuxiliaryMethods::getWholeLine();
+        cout << "Enter password: ";
+        password = AuxiliaryMethods::getWholeLine();
+
+        for (User singleUser : users){
+            if(singleUser.getLogin() == login && singleUser.getPassword() == password){
+                idLoggedInUser = singleUser.getId(); //do zmiany ID loggedinuser powinno byc w usersFileManager
+                return;
+            }
+        }
+        cout << "\nWrong Login or password. Left: " << i-1 << " attempts.\n\n";
+    }
+    cout << "Something goes wrong.\n";
+    system("pause");
 }
 
 void UserManager::signUp(){
     User newUser;
+
+    system ("cls");
+    cout << "          SIGN UP\n";
+    cout << "----------------------------\n\n";
+
     newUser = specifyNewUserData();
+    users.push_back(newUser);
     userFileManager.saveUserToFile(newUser);
 }
 
@@ -39,12 +59,21 @@ User UserManager::specifyNewUserData(){
     //Nie powinno sie dac wpisac psutego imienia i nazwiska
 
     newUser.setId(getIdForNewUser());
-    cout << "Enter name: ";
-    newUser.setName(AuxiliaryMethods::getWholeLine());
-    cout << "Enter lastname: ";
-    newUser.setLastname(AuxiliaryMethods::getWholeLine());
+    do{
+        cout << "Enter name: ";
+        newUser.setName(AuxiliaryMethods::getWholeLine());
+        if (newUser.getName() == "") cout << "You must enter name. Enter again.\n\n";
+    }while(newUser.getName() == "");
+
+    do{
+        cout << "Enter lastname: ";
+        newUser.setLastname(AuxiliaryMethods::getWholeLine());
+        if (newUser.getLastname() == "") cout << "You must enter Lastname. Enter again.\n\n";
+    }while(newUser.getLastname() == "");
+
     newUser.setLogin(enterNewLogin());
     newUser.setPassword(enterTwiceSamePassword());
+
     return newUser;
 }
 
@@ -64,19 +93,27 @@ string UserManager::enterNewLogin(){
     do{
         cout << "Enter Login: ";
         newLogin = AuxiliaryMethods::getWholeLine();
+
         if (newLogin == ""){
-            cout << "You must enter Login.\n";
-            continue;
+            cout << "\nYou must enter Login.\n";
         }
-    }while(isNewLoginAvailable(newLogin));
+    }while(newLogin == "" || isNewLoginAvailable(newLogin));
     return newLogin;
 }
 
 
 bool UserManager::isNewLoginAvailable(string newLogin){
-    //trzeba otworzyc plik i sprawdzic czy dziala
 
     if(users.size() == 0){
+        return false;
+    }
+    else{
+        for (User singleUser : users){
+            if(singleUser.getLogin() == newLogin){
+                cout << "\nLogin already exist. Try again.\n";
+                return true;
+            }
+        }
         return false;
     }
 }
@@ -97,12 +134,13 @@ string UserManager::enterTwiceSamePassword(){
         doubleCheckPassword = AuxiliaryMethods::getWholeLine();
 
         if (newPassword != doubleCheckPassword){
-            cout << "There is a diffrent beetwen both password. Try again.\n";
+            cout << "\nThere is a diffrent beetwen both password. Try again.\n";
         }
     }while(newPassword != doubleCheckPassword);
     return newPassword;
 }
 
+//Tutaj zmiana hasla do roziwniecia -> mozesz sie wzorowac na funkcji powyzej
 void UserManager::changeLoggedInUserPassword(){
     string newPassword;
     cout << "Enter new password: ";
@@ -112,6 +150,8 @@ void UserManager::changeLoggedInUserPassword(){
     userFileManager.saveNewUserPasswordToFile(newPassword, idLoggedInUser);
 }
 
+
+//temp
 void UserManager::showUsers(){
 
     if(users.empty()){
