@@ -35,8 +35,31 @@ int main()
             system("cls");
             cout << "          MAIN MENU\n";
             cout << "----------------------------\n";
-            system ("pause");
-            exit(0);
+            cout << "1. Add income\n";
+            cout << "2. Add expense\n";
+            cout << "3. Display current month balance\n";
+            cout << "4. Display previous month balance\n";
+            cout << "5. Display specific period of time balance\n";
+            cout << "9. Exit\n";
+            cout << "-----------------------------\n\n";
+            cout << "Choice: ";
+
+            choice = AuxiliaryMethods::getSign();
+            switch (choice){
+                case '1': budgetAppManager.signIn();
+                    break;
+                case '2': budgetAppManager.signUp();
+                    break;
+                case '3': budgetAppManager.signIn();
+                    break;
+                case '4': budgetAppManager.signUp();
+                    break;
+                case '5': budgetAppManager.signUp();
+                    break;
+                case '9': exit(0);
+                    break;
+                default: cout << "Wrong choice!\n"; system ("pause");
+            }
         }
     }
     return 0;
