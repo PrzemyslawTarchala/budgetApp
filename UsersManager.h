@@ -29,6 +29,7 @@ public:
 
     void signIn();
     void signUp();
+    void userLogout();
     void changeLoggedInUserPassword();
 
     //temp
