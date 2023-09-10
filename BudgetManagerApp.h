@@ -26,6 +26,7 @@ public:
     bool checkIfSomeoneIsLoggedIn();
 
     void changeLoggedInUserPassword();
+    void logout();
 
     void addIncome();
     void addExpense();

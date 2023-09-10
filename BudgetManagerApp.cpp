@@ -24,6 +24,12 @@ void BudgetManagerApp::changeLoggedInUserPassword(){
     userManager.changeLoggedInUserPassword();
 }
 
+void BudgetManagerApp::logout(){
+    userManager.userLogout();
+    delete balanceManager;
+    balanceManager = NULL;
+}
+
 void BudgetManagerApp::addIncome(){
     balanceManager -> addIncome();
 }

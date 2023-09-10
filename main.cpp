@@ -58,7 +58,7 @@ int main(){
                     break;
                 //case '6': budgetAppManager.changeLoggedInUserPassword();
                 //    break;
-                case '9': exit(0);
+                case '9': budgetAppManager.logout();
                     break;
                 default: cout << "Wrong choice!\n"; system ("pause");
             }

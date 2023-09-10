@@ -1,26 +1,38 @@
 #include "BalanceManager.h"
 
 void BalanceManager::addIncome(){
-    Income newIncome;
-    newIncome = specifyNewIncome();
+    system ("cls");
+    cout << "         NEW INCOME\n";
+    cout << "----------------------------\n";
+    Transaction newIncome;
+    newIncome = specifyNewTransaction();
     incomeFileManager.saveNewIncomeToFile(newIncome);
 }
 
-Income BalanceManager::specifyNewIncome(){
+void BalanceManager::addExpense(){
+    system ("cls");
+    cout << "         NEW EXPENSE\n";
+    cout << "----------------------------\n";
+    Transaction newExpense;
+    newExpense = specifyNewTransaction();
+    expenseFileManager.saveNewExpenseToFile(newExpense);
+}
 
-    Income newIncome;
-    newIncome.setUserId(ID_LOGGEDIN_USER);
-    newIncome.setDate(getDate());
-    cout << "Enter category: ";
-    newIncome.setCategory(AuxiliaryMethods::getWholeLine());
-    cout << "Enter income: ";
-    newIncome.setIncome(AuxiliaryMethods::getFloatNumber()); //mozna pobrac stringa -> do wekttora przekonwerotwac na floata, a do pliku stringa
-    cout << "\n\n";
-    cout << newIncome.getUserId() << " ";
-    cout << newIncome.getDate() << " ";
-    cout << newIncome.getCategory() << " ";
-    cout << newIncome.getIncome() << " ";
-    return newIncome;
+Transaction BalanceManager::specifyNewTransaction(){
+
+    Transaction newTransaction;
+    newTransaction.setUserId(ID_LOGGEDIN_USER);
+    do{
+        newTransaction.setDate(getDate());
+        cout << "Enter category: ";
+        newTransaction.setCategory(AuxiliaryMethods::getWholeLine());
+        cout << "Enter income: ";
+        newTransaction.setValueOfTransaction(AuxiliaryMethods::getFloatNumber());
+        cout << "\nSummary: ";
+        displaySingleTransaction(newTransaction);
+        cout << "\n\nConfirm 'y' / Enter again: press any key. Choice: ";
+    }while(AuxiliaryMethods::getSign() != 'y');
+    return newTransaction;
 }
 
 string BalanceManager::getDate(){
@@ -28,7 +40,8 @@ string BalanceManager::getDate(){
     string date;
     cout << "\nDate selection: \n";
     cout << "1. Today's transaction\n";
-    cout << "2. Select specific date of transaction\n";
+    cout << "2. Select specific date of transaction\n\n";
+    cout << "Date selection choice: ";
     choice = AuxiliaryMethods::getSign();
     switch(choice){
     case '1': dateAndTimeManager.getTodaysDate(date);
@@ -37,10 +50,6 @@ string BalanceManager::getDate(){
         break;
     }
     return date;
-}
-
-void BalanceManager::addExpense(){
-    cout << "Add expense.\n"; system("pause");
 }
 
 void BalanceManager::displayCurrentMonthBalance(){
@@ -53,4 +62,10 @@ void BalanceManager::displayPreviousMonthBalance(){
 
 void BalanceManager::displaySpecificPeriodOfTimeBalance(){
     cout << "DisplaySpecificPeriodOfTimeBalance.\n"; system("pause");
+}
+
+void BalanceManager::displaySingleTransaction(Transaction singleTransaction){
+    cout << "\nDate: " << singleTransaction.getDate();
+    cout << "\nCategory: " << singleTransaction.getCategory();
+    cout << "\nValue of transaction: " << singleTransaction.getValueOfTransaction();
 }

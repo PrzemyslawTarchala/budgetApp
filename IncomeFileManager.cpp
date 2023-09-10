@@ -5,7 +5,7 @@ IncomeFileManager::IncomeFileManager(){
     ACCES_PATH_TO_INCOME_FILE = createPathToFile(filename);
 }
 
-void IncomeFileManager::saveNewIncomeToFile(Income newIncome){
+void IncomeFileManager::saveNewIncomeToFile(Transaction newIncome){
 
     ifstream file;
     file.open(ACCES_PATH_TO_INCOME_FILE);
@@ -16,12 +16,12 @@ void IncomeFileManager::saveNewIncomeToFile(Income newIncome){
     }
     else {
         //cout << "file doesnt exists" << endl;
-        creatIcomeFileAndAddFirstUser(newIncome);
+        creatIncomeFileAndAddFirstIncome(newIncome);
         system("pause");
     }
 }
 
-void IncomeFileManager::openFileAndSaveNewIncome(Income newIncome){
+void IncomeFileManager::openFileAndSaveNewIncome(Transaction newIncome){
     CMarkup xml;
     xml.Load(ACCES_PATH_TO_INCOME_FILE);
 
@@ -32,12 +32,12 @@ void IncomeFileManager::openFileAndSaveNewIncome(Income newIncome){
     xml.AddElem("UserID", newIncome.getUserId());
     xml.AddElem("Date", newIncome.getDate());
     xml.AddElem("Category", newIncome.getCategory());
-    xml.AddElem("Income", AuxiliaryMethods::convertFloatToString((newIncome.getIncome())));
+    xml.AddElem("Income", AuxiliaryMethods::convertFloatToString((newIncome.getValueOfTransaction())));
     xml.Save(ACCES_PATH_TO_INCOME_FILE);
     xml.ResetMainPos();
 }
 
-void IncomeFileManager::creatIcomeFileAndAddFirstUser(Income newIncome){
+void IncomeFileManager::creatIncomeFileAndAddFirstIncome(Transaction newIncome){
 
     CMarkup xml;
     xml.AddElem("IncomeList");
@@ -47,7 +47,7 @@ void IncomeFileManager::creatIcomeFileAndAddFirstUser(Income newIncome){
     xml.AddElem("UserID", newIncome.getUserId());
     xml.AddElem("Date", newIncome.getDate());
     xml.AddElem("Category", newIncome.getCategory());
-    xml.AddElem("Income", AuxiliaryMethods::convertFloatToString((newIncome.getIncome())));
+    xml.AddElem("Income", AuxiliaryMethods::convertFloatToString((newIncome.getValueOfTransaction())));
     xml.Save(ACCES_PATH_TO_INCOME_FILE);
     xml.ResetMainPos();
 }

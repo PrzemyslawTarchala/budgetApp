@@ -31,7 +31,7 @@ void UserManager::signIn(){
 
         for (User singleUser : users){
             if(singleUser.getLogin() == login && singleUser.getPassword() == password){
-                idLoggedInUser = singleUser.getId(); //do zmiany ID loggedinuser powinno byc w usersFileManager
+                idLoggedInUser = singleUser.getId();
                 return;
             }
         }
@@ -53,11 +53,17 @@ void UserManager::signUp(){
     userFileManager.saveUserToFile(newUser);
 }
 
+void UserManager::userLogout(){
+    system ("cls");
+    cout << "          LOGGED OUT\n";
+    cout << "----------------------------\n\n";
+    idLoggedInUser = 0;
+    system("pause");
+}
+
 User UserManager::specifyNewUserData(){
+
     User newUser;
-
-    //Nie powinno sie dac wpisac psutego imienia i nazwiska
-
     newUser.setId(getIdForNewUser());
     do{
         cout << "Enter name: ";
@@ -73,7 +79,6 @@ User UserManager::specifyNewUserData(){
 
     newUser.setLogin(enterNewLogin());
     newUser.setPassword(enterTwiceSamePassword());
-
     return newUser;
 }
 

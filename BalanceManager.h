@@ -2,8 +2,7 @@
 #define BALANCEMANAGER_H
 
 #include <iostream>
-#include "Income.h"
-#include "Expense.h"
+#include "Transaction.h"
 #include "IncomeFileManager.h"
 #include "ExpenseFileManager.h"
 #include "DateAndTimeManager.h"
@@ -18,8 +17,9 @@ class BalanceManager{
     IncomeFileManager incomeFileManager;
     ExpenseFileManager expenseFileManager;
 
-    Income specifyNewIncome();
+    Transaction specifyNewTransaction();
     string getDate();
+    void displaySingleTransaction(Transaction singleTransaction);
 
 public:
     BalanceManager(int idLoggedInUser) : ID_LOGGEDIN_USER(idLoggedInUser){};
