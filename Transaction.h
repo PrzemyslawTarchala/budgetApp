@@ -8,18 +8,18 @@ using namespace std;
 class Transaction{
     int userId;
     string category;
-    string date;
+    int date;
     float valueOfTransaction;
 
 public:
     int getUserId();
     string getCategory();
-    string getDate();
+    int getDate();
     float getValueOfTransaction();
 
     void setUserId(int newUserId);
     void setCategory(string newCategory);
-    void setDate(string newDate);
+    void setDate(int newDate);
     void setValueOfTransaction(float newValueOfTransaction);
 };
 

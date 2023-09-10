@@ -36,6 +36,8 @@ public:
 
         //temp
     void showUsers();
+    void displayAllIncomesLoggedInUser();
+    void displayAllExpensesLoggedInUser();
 };
 
 #endif

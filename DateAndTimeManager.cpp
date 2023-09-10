@@ -70,7 +70,12 @@ bool DateAndTimeManager::isValidDate(int day, int month, int year){
     }
 
     if (month == 4 || month == 6 || month == 9 || month == 11){
-        return (day <= 30);
+        if (day <= 30){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
     return false;
 }

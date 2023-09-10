@@ -5,6 +5,8 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <vector>
+
 #include "Transaction.h"
 #include "Markup.h"
 #include "FileManager.h"
@@ -17,6 +19,8 @@ class ExpenseFileManager : public FileManager{
 
 public:
     ExpenseFileManager();
+
+    vector <Transaction> loadExpenseFromFile(int idLoggedInUser);
 
     void saveNewExpenseToFile(Transaction newExpense);
     void openFileAndSaveNewExpense(Transaction newExpense);

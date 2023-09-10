@@ -18,6 +18,7 @@ public:
     static int getIntNumber();
     static string convertFloatToString(float number);
     static float convertStringToFloat(string str);
+    static int convertStringToInt(string str);
 
 };
 

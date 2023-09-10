@@ -6,6 +6,7 @@ void BalanceManager::addIncome(){
     cout << "----------------------------\n";
     Transaction newIncome;
     newIncome = specifyNewTransaction();
+    incomes.push_back(newIncome);
     incomeFileManager.saveNewIncomeToFile(newIncome);
 }
 
@@ -35,21 +36,21 @@ Transaction BalanceManager::specifyNewTransaction(){
     return newTransaction;
 }
 
-string BalanceManager::getDate(){
+int BalanceManager::getDate(){
     char choice;
-    string date;
+    string strDate;
     cout << "\nDate selection: \n";
     cout << "1. Today's transaction\n";
     cout << "2. Select specific date of transaction\n\n";
     cout << "Date selection choice: ";
     choice = AuxiliaryMethods::getSign();
     switch(choice){
-    case '1': dateAndTimeManager.getTodaysDate(date);
+    case '1': dateAndTimeManager.getTodaysDate(strDate);
         break;
-    case '2': dateAndTimeManager.specificDateOfTransaction(date);
+    case '2': dateAndTimeManager.specificDateOfTransaction(strDate);
         break;
     }
-    return date;
+    return AuxiliaryMethods::convertStringToInt(strDate);
 }
 
 void BalanceManager::displayCurrentMonthBalance(){
@@ -64,8 +65,22 @@ void BalanceManager::displaySpecificPeriodOfTimeBalance(){
     cout << "DisplaySpecificPeriodOfTimeBalance.\n"; system("pause");
 }
 
+void BalanceManager::displayAllIncomesLoggedInUser(){
+    for (Transaction singleTransaction : incomes){
+        displaySingleTransaction(singleTransaction);
+    }
+    system("pause");
+}
+
+void BalanceManager::displayAllExpensesLoggedInUser(){
+    for (Transaction singleTransaction : expenses){
+        displaySingleTransaction(singleTransaction);
+    }
+    system("pause");
+}
+
 void BalanceManager::displaySingleTransaction(Transaction singleTransaction){
-    cout << "\nDate: " << singleTransaction.getDate();
+    cout << "\n\nDate: " << singleTransaction.getDate();
     cout << "\nCategory: " << singleTransaction.getCategory();
     cout << "\nValue of transaction: " << singleTransaction.getValueOfTransaction();
 }

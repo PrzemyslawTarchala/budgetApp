@@ -51,3 +51,40 @@ void IncomeFileManager::creatIncomeFileAndAddFirstIncome(Transaction newIncome){
     xml.Save(ACCES_PATH_TO_INCOME_FILE);
     xml.ResetMainPos();
 }
+
+vector <Transaction> IncomeFileManager::loadIncomesFromFile(int idLoggedInUser){
+
+    vector <Transaction> incomesSpecyficUser;
+    Transaction singleTransactionFromFile;
+    CMarkup xml;
+    ifstream file;
+    file.open(ACCES_PATH_TO_INCOME_FILE); //to jest na tyle czesto uzywane ze mozna zrobic metode "bool isFileExist()" w pomocnicznych metodach
+
+    if(file){
+        xml.Load(ACCES_PATH_TO_INCOME_FILE);
+        xml.FindElem();
+        xml.IntoElem();
+        while(xml.FindElem("SingleIncome")){
+            xml.IntoElem();
+            xml.FindElem("UserID");
+            if (atoi(MCD_2PCSZ(xml.GetData())) == idLoggedInUser){
+                singleTransactionFromFile.setUserId(idLoggedInUser);
+                xml.FindElem("Date");
+                singleTransactionFromFile.setDate(atoi(MCD_2PCSZ(xml.GetData())));
+                xml.FindElem("Category");
+                singleTransactionFromFile.setCategory(xml.GetData());
+                xml.FindElem("Income");
+                singleTransactionFromFile.setValueOfTransaction(AuxiliaryMethods::convertStringToFloat(xml.GetData()));
+                xml.OutOfElem();
+                incomesSpecyficUser.push_back(singleTransactionFromFile);
+            }
+            else{
+                xml.OutOfElem();
+            }
+        }
+    }
+    else {
+        return; //Tutaj trzba cos dorobic
+    }
+    return incomesSpecyficUser;
+}

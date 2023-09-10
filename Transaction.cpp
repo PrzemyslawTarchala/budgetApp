@@ -8,7 +8,7 @@ string Transaction::getCategory(){
     return category;
 }
 
-string Transaction::getDate(){
+int Transaction::getDate(){
     return date;
 }
 
@@ -24,7 +24,7 @@ void Transaction::setCategory(string newCategory){
     category = newCategory;
 }
 
-void Transaction::setDate(string newDate){
+void Transaction::setDate(int newDate){
     date = newDate;
 }
 

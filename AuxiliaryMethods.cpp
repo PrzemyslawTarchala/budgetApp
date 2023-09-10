@@ -72,6 +72,12 @@ string AuxiliaryMethods::convertIntToString(int number){
     return str;
 }
 
+int AuxiliaryMethods::convertStringToInt(string str){
+    int number;
+    number = stoi(str);
+    return number;
+}
+
 int AuxiliaryMethods::getIntNumber(){
     string input = "";
     int number = 0;

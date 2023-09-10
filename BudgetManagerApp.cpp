@@ -46,6 +46,14 @@ void BudgetManagerApp::displaySpecificPeriodOfTimeBalance(){
     balanceManager -> displaySpecificPeriodOfTimeBalance();
 }
 
+void BudgetManagerApp::displayAllIncomesLoggedInUser(){
+    balanceManager -> displayAllIncomesLoggedInUser();
+}
+
+void BudgetManagerApp::displayAllExpensesLoggedInUser(){
+    balanceManager -> displayAllExpensesLoggedInUser();
+}
+
 //temp
 void BudgetManagerApp::showUsers(){
     userManager.showUsers();
