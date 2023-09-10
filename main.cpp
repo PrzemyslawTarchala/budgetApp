@@ -4,8 +4,8 @@
 
 using namespace std;
 
-int main()
-{
+int main(){
+
     BudgetManagerApp budgetAppManager;
     char choice;
 
@@ -46,16 +46,18 @@ int main()
 
             choice = AuxiliaryMethods::getSign();
             switch (choice){
-                case '1': budgetAppManager.signIn();
+                case '1': budgetAppManager.addIncome();
                     break;
-                case '2': budgetAppManager.signUp();
+                case '2': budgetAppManager.addExpense();
                     break;
-                case '3': budgetAppManager.signIn();
+                case '3': budgetAppManager.displayCurrentMonthBalance();
                     break;
-                case '4': budgetAppManager.signUp();
+                case '4': budgetAppManager.displayPreviousMonthBalance();
                     break;
-                case '5': budgetAppManager.signUp();
+                case '5': budgetAppManager.displaySpecificPeriodOfTimeBalance();
                     break;
+                //case '6': budgetAppManager.changeLoggedInUserPassword();
+                //    break;
                 case '9': exit(0);
                     break;
                 default: cout << "Wrong choice!\n"; system ("pause");

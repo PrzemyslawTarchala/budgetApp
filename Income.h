@@ -2,22 +2,16 @@
 #define INCOME_H
 
 #include <iostream>
-#include "DataAndTime.h"
+#include "Transaction.h"
 
 using namespace std;
 
-class Income : public DataAndTime{
-    int userId;
+class Income : public Transaction{
     float income;
-    string category;
 
 public:
-    int getUserId();
     float getIncome();
-    string getCategory();
-    void setUserId(int newUserId);
-    void setIncome(int newIncome);
-    void setCategory(int newCategory);
+    void setIncome(float newIncome);
 };
 
 #endif

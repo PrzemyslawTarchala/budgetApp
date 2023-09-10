@@ -2,13 +2,13 @@
 
 void BudgetManagerApp::signIn(){
     userManager.signIn();
+    if(checkIfSomeoneIsLoggedIn()){ //stworz metode : czy uzytkownik jest zalogowany
+        balanceManager = new BalanceManager(userManager.getLoggedInUserId());
+    }
 }
 
 void BudgetManagerApp::signUp(){
     userManager.signUp();
-    if(checkIfSomeoneIsLoggedIn()){ //stworz metode : czy uzytkownik jest zalogowany
-        balanceManager = new BalanceManager(userManager.getLoggedInUserId());
-    }
 }
 
 bool BudgetManagerApp::checkIfSomeoneIsLoggedIn(){ //to przeniesc do userManger
