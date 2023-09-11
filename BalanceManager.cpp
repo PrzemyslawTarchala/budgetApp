@@ -54,7 +54,27 @@ int BalanceManager::getDate(){
 }
 
 void BalanceManager::displayCurrentMonthBalance(){
-    cout << "DisplayCurrentMonthBalance.\n"; system("pause");
+    int searchFromDate;
+    int searchToDate;
+    int transactionNumber = 1;
+    float sumOfIncomes = 0;
+    float sumOfExpenses = 0;
+    dateAndTimeManager.getTimeFrameForCurrentMonth(searchFromDate, searchToDate);
+
+    system ("cls");
+    cout << "   CURRENT MONTH BALANCE\n";
+    cout << "----------------------------\n";
+    for (Transaction singleIncome : incomes){
+        if(singleIncome.getDate() >= searchFromDate && singleIncome.getDate() <= searchToDate){
+            cout << "Transaction number: " << transactionNumber;
+            displaySingleTransaction(singleIncome);
+            sumOfIncomes += singleIncome.getValueOfTransaction();
+            ++transactionNumber;
+        }
+    }
+    //setprecision(2);
+    cout << "\nSum of incomes: " << sumOfIncomes << "\n\n";
+    system("pause");
 }
 
 void BalanceManager::displayPreviousMonthBalance(){
@@ -63,6 +83,13 @@ void BalanceManager::displayPreviousMonthBalance(){
 
 void BalanceManager::displaySpecificPeriodOfTimeBalance(){
     cout << "DisplaySpecificPeriodOfTimeBalance.\n"; system("pause");
+}
+
+void BalanceManager::vectorSortingByDate(vector <Transaction> &transactions){
+    sort(transactions.begin( ), transactions.end( ), [ ]( const auto& lhs, const auto& rhs )
+    {
+       return lhs.getDate() < rhs.getDate();
+    });
 }
 
 void BalanceManager::displayAllIncomesLoggedInUser(){
@@ -80,7 +107,7 @@ void BalanceManager::displayAllExpensesLoggedInUser(){
 }
 
 void BalanceManager::displaySingleTransaction(Transaction singleTransaction){
-    cout << "\n\nDate: " << singleTransaction.getDate();
+    cout << "\nDate: " << singleTransaction.getDate();
     cout << "\nCategory: " << singleTransaction.getCategory();
-    cout << "\nValue of transaction: " << singleTransaction.getValueOfTransaction();
+    cout << "\nValue of transaction: " << singleTransaction.getValueOfTransaction() << "\n\n";
 }

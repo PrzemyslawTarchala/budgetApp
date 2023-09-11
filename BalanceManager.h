@@ -2,6 +2,8 @@
 #define BALANCEMANAGER_H
 
 #include <iostream>
+#include <algorithm>
+#include <iomanip>
 #include "Transaction.h"
 #include "IncomeFileManager.h"
 #include "ExpenseFileManager.h"
@@ -23,11 +25,16 @@ class BalanceManager{
     Transaction specifyNewTransaction();
     int getDate();
     void displaySingleTransaction(Transaction singleTransaction);
+    void vectorSortingByDate(vector <Transaction> &transactions);
+
 
 public:
     BalanceManager(int idLoggedInUser) : ID_LOGGEDIN_USER(idLoggedInUser){
         incomes = incomeFileManager.loadIncomesFromFile(ID_LOGGEDIN_USER);
+        vectorSortingByDate(incomes); //nie podoba mi sie to tutaj
         expenses = expenseFileManager.loadExpenseFromFile(ID_LOGGEDIN_USER);
+        vectorSortingByDate(expenses);
+        setprecision(2);
     };
 
     void addIncome();
