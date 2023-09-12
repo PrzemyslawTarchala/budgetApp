@@ -14,8 +14,15 @@ class DateAndTimeManager{
     bool isLeapYear (int year);
 
 public:
+    int getYear();
+    int getMonth();
+    int getDay();
+    int getNumbersOfDays(int month, int year);
     void getTodaysDate(string &date);
     void specificDateOfTransaction(string &date);
+    void getTimeFrameForCurrentMonth(int &fromDate, int &toDate);
+    void getTimeFrameForPrevoiusMonth(int &fromDate, int &toDate);
+    void getTimeFrameSpecificByUser(int &fromDate, int &toDate);
 };
 
 #endif
