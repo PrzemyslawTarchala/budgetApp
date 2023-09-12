@@ -260,7 +260,7 @@ Start:
 
     fromDate = AuxiliaryMethods::convertStringToInt(strFromDate);
     toDate = AuxiliaryMethods::convertStringToInt(strToDate);
-    if(toDate > fromDate){
+    if(toDate < fromDate){
         cout << "End date has to be bigger then starting date. Enter again.\n";
         system("pause");
         goto Start;
