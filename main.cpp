@@ -10,7 +10,7 @@ int main(){
     char choice;
 
     while(true){
-        if(budgetAppManager.checkIfSomeoneIsLoggedIn() == false){
+        if(budgetAppManager.getLoggedInUserId() == 0){
             system("cls");
             cout << "     BUDGET APP MANAGER\n";
             cout << "----------------------------\n";

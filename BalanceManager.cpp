@@ -135,9 +135,10 @@ void BalanceManager::displayBalance(int fromDate, int toDate){
             ++transactionExpenseNumber;
         }
     }
+    cout << ">>> SUMARRY BALANCE <<<\n\n";
     cout << "Sum of incomes: " << sumOfIncomes << "\n";
     cout << "Sum of Expense: " << sumOfExpenses << "\n";
-    cout << "FIANL BALANCE: " << sumOfIncomes - sumOfExpenses << "\n\n";
+    cout << "FIANL CASH FLOW: " << sumOfIncomes - sumOfExpenses << "\n\n";
 }
 
 void BalanceManager::displaySingleTransaction(Transaction singleTransaction){

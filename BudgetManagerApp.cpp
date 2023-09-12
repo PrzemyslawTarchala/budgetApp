@@ -1,8 +1,12 @@
 #include "BudgetManagerApp.h"
 
+int BudgetManagerApp::getLoggedInUserId(){
+    userManager.getLoggedInUserId();
+}
+
 void BudgetManagerApp::signIn(){
     userManager.signIn();
-    if(checkIfSomeoneIsLoggedIn()){ //stworz metode : czy uzytkownik jest zalogowany
+    if(userManager.isSomeoneLoggedIn()){
         balanceManager = new BalanceManager(INCOMES_FILE_NAME, EXPENSES_FILE_NAME, userManager.getLoggedInUserId());
     }
 }
@@ -11,37 +15,32 @@ void BudgetManagerApp::signUp(){
     userManager.signUp();
 }
 
-bool BudgetManagerApp::checkIfSomeoneIsLoggedIn(){ //to przeniesc do userManger
-    if(userManager.getLoggedInUserId() != 0){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
-void BudgetManagerApp::changeLoggedInUserPassword(){
-    userManager.changeLoggedInUserPassword();
-}
-
 void BudgetManagerApp::logout(){
     userManager.userLogout();
     delete balanceManager;
     balanceManager = NULL;
 }
 
+void BudgetManagerApp::changeLoggedInUserPassword(){
+    userManager.changeLoggedInUserPassword();
+}
+
 void BudgetManagerApp::addIncome(){
     balanceManager -> addIncome();
 }
+
 void BudgetManagerApp::addExpense(){
-    balanceManager -> addExpense();
+   balanceManager -> addExpense();
 }
+
 void BudgetManagerApp::displayCurrentMonthBalance(){
     balanceManager -> displayCurrentMonthBalance();
 }
+
 void BudgetManagerApp::displayPreviousMonthBalance(){
     balanceManager -> displayPreviousMonthBalance();
 }
+
 void BudgetManagerApp::displaySpecificPeriodOfTimeBalance(){
     balanceManager -> displaySpecificPeriodOfTimeBalance();
 }

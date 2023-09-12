@@ -1,6 +1,6 @@
 #include "UsersFileManager.h"
 
-vector <User> UsersFileManager::loadUsersFromFile(){ //to musi trafic do konstruktora
+vector <User> UsersFileManager::loadUsersFromFile(){
 
     CMarkup xml;
     User userFromFile;

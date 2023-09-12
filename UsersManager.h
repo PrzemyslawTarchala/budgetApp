@@ -34,6 +34,7 @@ public:
     void signUp();
     void userLogout();
     void changeLoggedInUserPassword();
+    bool isSomeoneLoggedIn();
 
     //temp
     void showUsers();

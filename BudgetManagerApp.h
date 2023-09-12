@@ -11,7 +11,6 @@ using namespace std;
 class BudgetManagerApp{
     UserManager userManager;
     BalanceManager *balanceManager;
-
     const string INCOMES_FILE_NAME;
     const string EXPENSES_FILE_NAME;
 
@@ -24,7 +23,7 @@ public:
         delete balanceManager;
         balanceManager = NULL;
     }
-
+    int getLoggedInUserId();
     void signIn();
     void signUp();
     bool checkIfSomeoneIsLoggedIn();

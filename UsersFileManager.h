@@ -13,7 +13,7 @@
 using namespace std;
 
 class UsersFileManager : public FileManager{
-    string INCOME_FILE_NAME;
+    const string INCOME_FILE_NAME;
     const string ACCES_PATH_TO_USER_FILE;
 
     void creatUsersFileAndAddFirstUser(User userToSave);

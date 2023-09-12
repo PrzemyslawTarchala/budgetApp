@@ -134,7 +134,7 @@ string UserManager::enterTwiceSamePassword(){
         doubleCheckPassword = AuxiliaryMethods::getWholeLine();
 
         if (newPassword != doubleCheckPassword){
-            cout << "\nThere is a diffrent beetwen both password. Try again.\n";
+            cout << "\nThere is a difference between both password. Try again.\n";
         }
     }while(newPassword != doubleCheckPassword);
     return newPassword;
@@ -148,6 +148,15 @@ void UserManager::changeLoggedInUserPassword(){
     //walidacja typu --> nie moze byc pustego stringa
     //potrzebujesz zapisac to do wektora od razu
     userFileManager.saveNewUserPasswordToFile(newPassword, idLoggedInUser);
+}
+
+bool UserManager::isSomeoneLoggedIn(){
+    if(idLoggedInUser != 0){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 
