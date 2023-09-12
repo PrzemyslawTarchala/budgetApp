@@ -1,10 +1,4 @@
 #include "UsersFileManager.h"
-#include <string>
-
-UsersFileManager::UsersFileManager(){
-    string fileName = "\\\\User.xml"; //rozwiazac przez liste inicjalizacyjna
-    ACCES_PATH_TO_USER_FILE = createPathToFile(fileName);
-}
 
 vector <User> UsersFileManager::loadUsersFromFile(){ //to musi trafic do konstruktora
 

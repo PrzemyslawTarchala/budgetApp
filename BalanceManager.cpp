@@ -56,123 +56,36 @@ int BalanceManager::getDate(){
 void BalanceManager::displayCurrentMonthBalance(){
     int searchFromDate;
     int searchToDate;
-    int transactionIncomeNumber = 1;
-    int transactionExpenseNumber = 1;
-    float sumOfIncomes = 0;
-    float sumOfExpenses = 0;
-    dateAndTimeManager.getTimeFrameForCurrentMonth(searchFromDate, searchToDate);
 
     system ("cls");
     cout << "   CURRENT MONTH BALANCE\n";
     cout << "----------------------------\n";
-    for (Transaction singleIncome : incomes){
-        if(singleIncome.getDate() >= searchFromDate && singleIncome.getDate() <= searchToDate){
-            cout << "Income number: " << transactionIncomeNumber;
-            displaySingleTransaction(singleIncome);
-            sumOfIncomes += singleIncome.getValueOfTransaction();
-            ++transactionIncomeNumber;
-
-            //continue; ->> j
-        }
-    }
-
-    for (Transaction singleExpense : expenses){
-        if(singleExpense.getDate() >= searchFromDate && singleExpense.getDate() <= searchToDate){
-            cout << "Expense number: " << transactionExpenseNumber;
-            displaySingleTransaction(singleExpense);
-            sumOfExpenses += singleExpense.getValueOfTransaction();
-            ++transactionExpenseNumber;
-
-            //continue; ->> j
-        }
-    }
-    //setprecision(2);
-    cout << "Sum of incomes: " << sumOfIncomes << "\n";
-    cout << "Sum of Expense: " << sumOfExpenses << "\n";
-    cout << "FIANL BALANCE: " << sumOfIncomes - sumOfExpenses << "\n\n";
-
+    dateAndTimeManager.getTimeFrameForCurrentMonth(searchFromDate, searchToDate);
+    displayBalance(searchFromDate, searchToDate);
     system("pause");
 }
 
 void BalanceManager::displayPreviousMonthBalance(){
     int searchFromDate;
     int searchToDate;
-    int transactionIncomeNumber = 1;
-    int transactionExpenseNumber = 1;
-    float sumOfIncomes = 0;
-    float sumOfExpenses = 0;
-    dateAndTimeManager.getTimeFrameForPrevoiusMonth(searchFromDate, searchToDate);
 
     system ("cls");
     cout << "   PREVIOUS MONTH BALANCE\n";
     cout << "----------------------------\n";
-    for (Transaction singleIncome : incomes){
-        if(singleIncome.getDate() >= searchFromDate && singleIncome.getDate() <= searchToDate){
-            cout << "Income number: " << transactionIncomeNumber;
-            displaySingleTransaction(singleIncome);
-            sumOfIncomes += singleIncome.getValueOfTransaction();
-            ++transactionIncomeNumber;
-
-            //continue; ->> j
-        }
-    }
-
-    for (Transaction singleExpense : expenses){
-        if(singleExpense.getDate() >= searchFromDate && singleExpense.getDate() <= searchToDate){
-            cout << "Expense number: " << transactionExpenseNumber;
-            displaySingleTransaction(singleExpense);
-            sumOfExpenses += singleExpense.getValueOfTransaction();
-            ++transactionExpenseNumber;
-
-            //continue; ->> j
-        }
-    }
-    //setprecision(2);
-    cout << "Sum of incomes: " << sumOfIncomes << "\n";
-    cout << "Sum of Expense: " << sumOfExpenses << "\n";
-    cout << "FIANL BALANCE: " << sumOfIncomes - sumOfExpenses << "\n\n";
-
+    dateAndTimeManager.getTimeFrameForPrevoiusMonth(searchFromDate, searchToDate);
+    displayBalance(searchFromDate, searchToDate);
     system("pause");
 }
 
 void BalanceManager::displaySpecificPeriodOfTimeBalance(){
     int searchFromDate;
     int searchToDate;
-    int transactionIncomeNumber = 1;
-    int transactionExpenseNumber = 1;
-    float sumOfIncomes = 0;
-    float sumOfExpenses = 0;
-    dateAndTimeManager.getTimeFrameSpecificByUser(searchFromDate, searchToDate);
 
     system ("cls");
     cout << "   PREVIOUS MONTH BALANCE\n";
     cout << "----------------------------\n";
-    for (Transaction singleIncome : incomes){
-        if(singleIncome.getDate() >= searchFromDate && singleIncome.getDate() <= searchToDate){
-            cout << "Income number: " << transactionIncomeNumber;
-            displaySingleTransaction(singleIncome);
-            sumOfIncomes += singleIncome.getValueOfTransaction();
-            ++transactionIncomeNumber;
-
-            //continue; ->> j
-        }
-    }
-
-    for (Transaction singleExpense : expenses){
-        if(singleExpense.getDate() >= searchFromDate && singleExpense.getDate() <= searchToDate){
-            cout << "Expense number: " << transactionExpenseNumber;
-            displaySingleTransaction(singleExpense);
-            sumOfExpenses += singleExpense.getValueOfTransaction();
-            ++transactionExpenseNumber;
-
-            //continue; ->> j
-        }
-    }
-    //setprecision(2);
-    cout << "Sum of incomes: " << sumOfIncomes << "\n";
-    cout << "Sum of Expense: " << sumOfExpenses << "\n";
-    cout << "FIANL BALANCE: " << sumOfIncomes - sumOfExpenses << "\n\n";
-
+    dateAndTimeManager.getTimeFrameSpecificByUser(searchFromDate, searchToDate);
+    displayBalance(searchFromDate, searchToDate);
     system("pause");
 }
 
@@ -195,6 +108,36 @@ void BalanceManager::displayAllExpensesLoggedInUser(){
         displaySingleTransaction(singleTransaction);
     }
     system("pause");
+}
+
+void BalanceManager::displayBalance(int fromDate, int toDate){
+    int transactionIncomeNumber = 1;
+    int transactionExpenseNumber = 1;
+    float sumOfIncomes = 0;
+    float sumOfExpenses = 0;
+
+    cout << ">>> INCOMES <<<\n\n";
+    for (Transaction singleIncome : incomes){
+        if(singleIncome.getDate() >= fromDate && singleIncome.getDate() <= toDate){
+            cout << "Income number: " << transactionIncomeNumber;
+            displaySingleTransaction(singleIncome);
+            sumOfIncomes += singleIncome.getValueOfTransaction();
+            ++transactionIncomeNumber;
+        }
+    }
+
+    cout << ">>> EXPENSES <<<\n\n";
+    for (Transaction singleExpense : expenses){
+        if(singleExpense.getDate() >= fromDate && singleExpense.getDate() <= toDate){
+            cout << "Expense number: " << transactionExpenseNumber;
+            displaySingleTransaction(singleExpense);
+            sumOfExpenses += singleExpense.getValueOfTransaction();
+            ++transactionExpenseNumber;
+        }
+    }
+    cout << "Sum of incomes: " << sumOfIncomes << "\n";
+    cout << "Sum of Expense: " << sumOfExpenses << "\n";
+    cout << "FIANL BALANCE: " << sumOfIncomes - sumOfExpenses << "\n\n";
 }
 
 void BalanceManager::displaySingleTransaction(Transaction singleTransaction){

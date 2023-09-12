@@ -6,7 +6,7 @@ using namespace std;
 
 int main(){
 
-    BudgetManagerApp budgetAppManager;
+    BudgetManagerApp budgetAppManager("User.xml", "Income.xml", "Expense.xml");
     char choice;
 
     while(true){

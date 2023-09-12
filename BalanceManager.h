@@ -26,15 +26,17 @@ class BalanceManager{
     int getDate();
     void displaySingleTransaction(Transaction singleTransaction);
     void vectorSortingByDate(vector <Transaction> &transactions);
+    void displayBalance(int fromDate, int toDate);
 
 
 public:
-    BalanceManager(int idLoggedInUser) : ID_LOGGEDIN_USER(idLoggedInUser){
-        incomes = incomeFileManager.loadIncomesFromFile(ID_LOGGEDIN_USER);
-        vectorSortingByDate(incomes); //nie podoba mi sie to tutaj
-        expenses = expenseFileManager.loadExpenseFromFile(ID_LOGGEDIN_USER);
-        vectorSortingByDate(expenses);
-        setprecision(2);
+    BalanceManager(string incomeFileName, string expensesFileName, int idLoggedInUser)
+            :  incomeFileManager(incomeFileName), expenseFileManager(expensesFileName), ID_LOGGEDIN_USER(idLoggedInUser){
+                incomes = incomeFileManager.loadIncomesFromFile(ID_LOGGEDIN_USER);
+                vectorSortingByDate(incomes); //nie podoba mi sie to tutaj
+                expenses = expenseFileManager.loadExpenseFromFile(ID_LOGGEDIN_USER);
+                vectorSortingByDate(expenses);
+                setprecision(2);
     };
 
     void addIncome();

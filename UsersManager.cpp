@@ -1,10 +1,5 @@
 #include "UsersManager.h"
 
-UserManager::UserManager(){
-    users = userFileManager.loadUsersFromFile();
-    idLoggedInUser = 0;
-}
-
 int UserManager::getLoggedInUserId(){
     return idLoggedInUser;
 }

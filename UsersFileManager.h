@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <string>
 
 #include "User.h"
 #include "Markup.h"
@@ -12,13 +13,16 @@
 using namespace std;
 
 class UsersFileManager : public FileManager{
-
+    string INCOME_FILE_NAME;
     const string ACCES_PATH_TO_USER_FILE;
+
     void creatUsersFileAndAddFirstUser(User userToSave);
     void openFileAndSaveNewUser(User userToSave);
 
 public:
-    UsersFileManager();
+    UsersFileManager(string userFileName) : INCOME_FILE_NAME(userFileName){
+        ACCES_PATH_TO_USER_FILE = createPathToFile(INCOME_FILE_NAME);
+    };
 
     vector <User> loadUsersFromFile();
     void saveUserToFile(User userToSave);

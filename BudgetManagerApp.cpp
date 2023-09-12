@@ -3,7 +3,7 @@
 void BudgetManagerApp::signIn(){
     userManager.signIn();
     if(checkIfSomeoneIsLoggedIn()){ //stworz metode : czy uzytkownik jest zalogowany
-        balanceManager = new BalanceManager(userManager.getLoggedInUserId());
+        balanceManager = new BalanceManager(INCOMES_FILE_NAME, EXPENSES_FILE_NAME, userManager.getLoggedInUserId());
     }
 }
 

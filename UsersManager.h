@@ -24,7 +24,10 @@ class UserManager{
 
 public:
 
-    UserManager();
+    UserManager(string userFileName) : userFileManager(userFileName){
+        users = userFileManager.loadUsersFromFile();
+        idLoggedInUser = 0;
+    };
     int getLoggedInUserId();
 
     void signIn();

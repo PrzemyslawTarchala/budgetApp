@@ -15,10 +15,13 @@
 using namespace std;
 
 class ExpenseFileManager : public FileManager{
+    string EXPENSES_FILE_NAME;
     string ACCES_PATH_TO_EXPENSE_FILE;
 
 public:
-    ExpenseFileManager();
+    ExpenseFileManager(string expensesFileName) : EXPENSES_FILE_NAME(expensesFileName){
+        ACCES_PATH_TO_EXPENSE_FILE = createPathToFile(EXPENSES_FILE_NAME);
+    };
 
     vector <Transaction> loadExpenseFromFile(int idLoggedInUser);
 
