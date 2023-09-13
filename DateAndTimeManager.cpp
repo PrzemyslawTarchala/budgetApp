@@ -45,11 +45,8 @@ void DateAndTimeManager::getTodaysDate(string &date){
 
     time_t now = time(0);
     tm *ltm = localtime(&now);
-    //year = AuxiliaryMethods::convertIntToString(1900 + ltm-> tm_year);
     year = AuxiliaryMethods::convertIntToString(getYear());
-    //month = AuxiliaryMethods::convertIntToString(1 + ltm-> tm_mon);
     month = AuxiliaryMethods::convertIntToString(getMonth());
-    //day = AuxiliaryMethods::convertIntToString(ltm -> tm_mday)
     day = AuxiliaryMethods::convertIntToString(getDay());
 
     if (month.length() == 1){
@@ -71,10 +68,6 @@ void DateAndTimeManager::specificDateOfTransaction(string &date){
         month = AuxiliaryMethods::getIntNumber();
         cout << "Enter year: ";
         year = AuxiliaryMethods::getIntNumber();
-
-        if(isValidDate(day, month, year)){
-            cout << "Date is incorrect. Enter again.";
-        }
     }while(isValidDate(day, month, year));
 
     strDay = AuxiliaryMethods::convertIntToString(day);
@@ -91,20 +84,30 @@ void DateAndTimeManager::specificDateOfTransaction(string &date){
 }
 
 bool DateAndTimeManager::isValidDate(int day, int month, int year){
+
+    if (year < 2000){
+        cout << "\nWrong date. The oldest possible date starts from 2000-01-01.\n\n";
+        return true;
+    }
+
     if (month < 1 || month > 12){
+        cout << "Wrong date. Enter again.\n\n";
         return true;
     }
     if (day < 1 || day > 31){
+        cout << "Wrong date. Enter again.\n\n";
         return true;
     }
     if (month == 2){
         if (isLeapYear(year)){
             if (day > 29){
-                 return true;
+                cout << "Wrong date. Enter again.\n\n";
+                return true;
             }
         }
         else{
             if (day > 28){
+                cout << "Wrong date. Enter again.\n\n";
                 return true;
             }
         }
@@ -115,6 +118,7 @@ bool DateAndTimeManager::isValidDate(int day, int month, int year){
             return false;
         }
         else{
+            cout << "Wrong date. Enter again.\n\n";
             return true;
         }
     }
@@ -208,25 +212,25 @@ Start:
     EnterFromDate:
     cout << "Start searching from year: ";
     startYear = AuxiliaryMethods::getIntNumber();
-    cout << "and month: ";
+    cout << "Month: ";
     startMonth = AuxiliaryMethods::getIntNumber();
-    cout << "and day: ";
+    cout << "Day: ";
     startDay = AuxiliaryMethods::getIntNumber();
     if(isValidDate(startDay, startMonth, startYear)) {
-        cout << "Wrong date. Try again.\n";
+        cout << "Wrong date. Try again.\n\n";
         system("pause");
         goto EnterFromDate;
     }
 
     EnterToDate:
-    cout << "Search to year: ";
+    cout << "\nSearch to year: ";
     endYear= AuxiliaryMethods::getIntNumber();
-    cout << "and month: ";
+    cout << "Month: ";
     endMonth = AuxiliaryMethods::getIntNumber();
-    cout << "and day: ";
+    cout << "Day: ";
     endDay = AuxiliaryMethods::getIntNumber();
     if(isValidDate(startDay, startMonth, startYear)) {
-        cout << "Wrong date. Try again.\n";
+        cout << "Wrong date. Try again.\n\n";
         system("pause");
         goto EnterToDate;
     }
@@ -261,9 +265,17 @@ Start:
     fromDate = AuxiliaryMethods::convertStringToInt(strFromDate);
     toDate = AuxiliaryMethods::convertStringToInt(strToDate);
     if(toDate < fromDate){
-        cout << "End date has to be bigger then starting date. Enter again.\n";
+        cout << "\nEnd date has to be bigger then starting date. Enter again.\n\n";
         system("pause");
         goto Start;
     }
 }
 
+string DateAndTimeManager::displayFormatData(int unformatedDate){
+    string year, month, day;
+    string formatedDate = AuxiliaryMethods::convertIntToString(unformatedDate);
+    year = formatedDate.substr(0,4);
+    month = formatedDate.substr(4,2);
+    day = formatedDate.substr(6,2);
+    return year + "-" + month + "-" + day;
+}

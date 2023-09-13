@@ -9,18 +9,21 @@
 using namespace std;
 
 class BudgetManagerApp{
-    UserManager userManager;
+    UsersManager userManager;
     BalanceManager *balanceManager;
+    const string INCOMES_FILE_NAME;
+    const string EXPENSES_FILE_NAME;
 
 public:
-    BudgetManagerApp(){
-        balanceManager = NULL;
+    BudgetManagerApp(string usersFileName, string incomeFileName, string expenseFileName)
+        : userManager(usersFileName), INCOMES_FILE_NAME(incomeFileName), EXPENSES_FILE_NAME(expenseFileName){
+            balanceManager = NULL;
     }
     ~BudgetManagerApp(){
         delete balanceManager;
         balanceManager = NULL;
     }
-
+    int getLoggedInUserId();
     void signIn();
     void signUp();
     bool checkIfSomeoneIsLoggedIn();
@@ -34,10 +37,10 @@ public:
     void displayPreviousMonthBalance();
     void displaySpecificPeriodOfTimeBalance();
 
-        //temp
-    void showUsers();
-    void displayAllIncomesLoggedInUser();
-    void displayAllExpensesLoggedInUser();
+    //temp
+    //void showUsers();
+    //void displayAllIncomesLoggedInUser();
+    //void displayAllExpensesLoggedInUser();
 };
 
 #endif

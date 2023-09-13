@@ -5,20 +5,19 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <vector>
-
-#include "Transaction.h"
-#include "Markup.h"
 #include "FileManager.h"
-#include "AuxiliaryMethods.h"
+#include "Transaction.h"
 
 using namespace std;
 
 class IncomeFileManager : public FileManager{
+    string INCOME_FILE_NAME;
     string ACCES_PATH_TO_INCOME_FILE;
 
 public:
-    IncomeFileManager();
+    IncomeFileManager(string incomeFileName) : INCOME_FILE_NAME(incomeFileName){
+        ACCES_PATH_TO_INCOME_FILE = createPathToFile(INCOME_FILE_NAME);
+    };
 
     vector <Transaction> loadIncomesFromFile(int idLoggedInUser);
 

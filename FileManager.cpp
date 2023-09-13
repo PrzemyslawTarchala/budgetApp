@@ -6,7 +6,7 @@ string FileManager::createPathToFile(string fileName){
     string dirPath = filePath.substr(0, filePath.rfind("\\"));
     string newPath;
 
-    for (size_t i = 0; i < dirPath.length(); ++i){ //zwarca zmienna size_t
+    for (size_t i = 0; i < dirPath.length(); ++i){
         if(dirPath[i] == '\\'){
             newPath += "\\\\";
         }
@@ -14,6 +14,7 @@ string FileManager::createPathToFile(string fileName){
             newPath += dirPath[i];
         }
     }
-    newPath = newPath + fileName;
+    newPath = newPath + "\\\\" + fileName;
     return newPath;
 }
+

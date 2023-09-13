@@ -1,10 +1,5 @@
 #include "IncomeFileManager.h"
 
-IncomeFileManager::IncomeFileManager(){
-    string filename = "\\\\Income.xml";
-    ACCES_PATH_TO_INCOME_FILE = createPathToFile(filename);
-}
-
 void IncomeFileManager::saveNewIncomeToFile(Transaction newIncome){
 
     ifstream file;
@@ -12,12 +7,10 @@ void IncomeFileManager::saveNewIncomeToFile(Transaction newIncome){
     if(file){
         //cout << "file exists" << endl;
         openFileAndSaveNewIncome(newIncome);
-        system("pause");
     }
     else {
         //cout << "file doesnt exists" << endl;
         creatIncomeFileAndAddFirstIncome(newIncome);
-        system("pause");
     }
 }
 
@@ -54,13 +47,13 @@ void IncomeFileManager::creatIncomeFileAndAddFirstIncome(Transaction newIncome){
 
 vector <Transaction> IncomeFileManager::loadIncomesFromFile(int idLoggedInUser){
 
-    vector <Transaction> incomesSpecyficUser;
-    Transaction singleTransactionFromFile;
     CMarkup xml;
     ifstream file;
     file.open(ACCES_PATH_TO_INCOME_FILE); //to jest na tyle czesto uzywane ze mozna zrobic metode "bool isFileExist()" w pomocnicznych metodach
 
     if(file){
+        vector <Transaction> incomesSpecyficUser;
+        Transaction singleTransactionFromFile;
         xml.Load(ACCES_PATH_TO_INCOME_FILE);
         xml.FindElem();
         xml.IntoElem();
@@ -82,9 +75,9 @@ vector <Transaction> IncomeFileManager::loadIncomesFromFile(int idLoggedInUser){
                 xml.OutOfElem();
             }
         }
+        return incomesSpecyficUser;
     }
     else {
-        return; //Tutaj trzba cos dorobic
+        return {};
     }
-    return incomesSpecyficUser;
 }

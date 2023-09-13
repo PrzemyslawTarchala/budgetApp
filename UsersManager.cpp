@@ -1,15 +1,10 @@
 #include "UsersManager.h"
 
-UserManager::UserManager(){
-    users = userFileManager.loadUsersFromFile();
-    idLoggedInUser = 0;
-}
-
-int UserManager::getLoggedInUserId(){
+int UsersManager::getLoggedInUserId(){
     return idLoggedInUser;
 }
 
-void UserManager::signIn(){
+void UsersManager::signIn(){
     string login, password;
     int loginAttempt = 3;
 
@@ -37,11 +32,10 @@ void UserManager::signIn(){
         }
         cout << "\nWrong Login or password. Left: " << i-1 << " attempts.\n\n";
     }
-    cout << "Something goes wrong.\n";
     system("pause");
 }
 
-void UserManager::signUp(){
+void UsersManager::signUp(){
     User newUser;
 
     system ("cls");
@@ -51,9 +45,11 @@ void UserManager::signUp(){
     newUser = specifyNewUserData();
     users.push_back(newUser);
     userFileManager.saveUserToFile(newUser);
+    cout << "\nAccount created.\n\n";
+    system("pause");
 }
 
-void UserManager::userLogout(){
+void UsersManager::userLogout(){
     system ("cls");
     cout << "          LOGGED OUT\n";
     cout << "----------------------------\n\n";
@@ -61,7 +57,7 @@ void UserManager::userLogout(){
     system("pause");
 }
 
-User UserManager::specifyNewUserData(){
+User UsersManager::specifyNewUserData(){
 
     User newUser;
     newUser.setId(getIdForNewUser());
@@ -72,9 +68,9 @@ User UserManager::specifyNewUserData(){
     }while(newUser.getName() == "");
 
     do{
-        cout << "Enter lastname: ";
+        cout << "Enter last name: ";
         newUser.setLastname(AuxiliaryMethods::getWholeLine());
-        if (newUser.getLastname() == "") cout << "You must enter Lastname. Enter again.\n\n";
+        if (newUser.getLastname() == "") cout << "You must enter last name. Enter again.\n\n";
     }while(newUser.getLastname() == "");
 
     newUser.setLogin(enterNewLogin());
@@ -82,7 +78,7 @@ User UserManager::specifyNewUserData(){
     return newUser;
 }
 
-int UserManager::getIdForNewUser(){
+int UsersManager::getIdForNewUser(){
 
     if (users.empty()){
         return 1;
@@ -92,7 +88,7 @@ int UserManager::getIdForNewUser(){
     }
 }
 
-string UserManager::enterNewLogin(){
+string UsersManager::enterNewLogin(){
 
     string newLogin;
     do{
@@ -107,7 +103,7 @@ string UserManager::enterNewLogin(){
 }
 
 
-bool UserManager::isNewLoginAvailable(string newLogin){
+bool UsersManager::isNewLoginAvailable(string newLogin){
 
     if(users.size() == 0){
         return false;
@@ -123,7 +119,7 @@ bool UserManager::isNewLoginAvailable(string newLogin){
     }
 }
 
-string UserManager::enterTwiceSamePassword(){
+string UsersManager::enterTwiceSamePassword(){
 
     string newPassword, doubleCheckPassword;
 
@@ -139,32 +135,50 @@ string UserManager::enterTwiceSamePassword(){
         doubleCheckPassword = AuxiliaryMethods::getWholeLine();
 
         if (newPassword != doubleCheckPassword){
-            cout << "\nThere is a diffrent beetwen both password. Try again.\n";
+            cout << "\nThere is a difference between both password. Try again.\n";
         }
     }while(newPassword != doubleCheckPassword);
     return newPassword;
 }
 
-//Tutaj zmiana hasla do roziwniecia -> mozesz sie wzorowac na funkcji powyzej
-void UserManager::changeLoggedInUserPassword(){
+void UsersManager::changeLoggedInUserPassword(){
     string newPassword;
-    cout << "Enter new password: ";
-    newPassword = AuxiliaryMethods::getWholeLine();
-    //walidacja typu --> nie moze byc pustego stringa
-    //potrzebujesz zapisac to do wektora od razu
+
+    system ("cls");
+    cout << "         NEW PASSWORD\n";
+    cout << "----------------------------\n\n";
+    newPassword = enterTwiceSamePassword();
+    for (User &singleUser : users){
+        if(singleUser.getId() == idLoggedInUser){
+            singleUser.setPassword(newPassword);
+        }
+    }
     userFileManager.saveNewUserPasswordToFile(newPassword, idLoggedInUser);
+    cout << "\nPassword changed.\n\n";
+    system("pause");
+}
+
+bool UsersManager::isSomeoneLoggedIn(){
+    if(idLoggedInUser != 0){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 
 //temp
-void UserManager::showUsers(){
-
+/*
+void UsersManager::showUsers(){
     if(users.empty()){
-        cout << "Pusto ";
+        cout << "Empty vector ";
     }
     else{
         for (User singleUser : users){
             cout << singleUser.getId() << endl;
+            cout << singleUser.getPassword() << endl;
         }
     }
-}
+    system("pause");
+}*/
