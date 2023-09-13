@@ -7,12 +7,10 @@ void ExpenseFileManager::saveNewExpenseToFile(Transaction newExpense){
     if(file){
         //cout << "file exists" << endl;
         openFileAndSaveNewExpense(newExpense);
-        system("pause");
     }
     else {
         //cout << "file doesnt exists" << endl;
         creatExpenseFileAndAddFirstExpense(newExpense);
-        system("pause");
     }
 }
 void ExpenseFileManager::openFileAndSaveNewExpense(Transaction newExpense){
@@ -78,7 +76,7 @@ vector <Transaction> ExpenseFileManager::loadExpenseFromFile(int idLoggedInUser)
         }
     }
     else {
-        return; //Tutaj trzba cos dorobic
+        return {};
     }
     return expensesSpecyficUser;
 }

@@ -16,20 +16,20 @@ float Transaction::getValueOfTransaction(){
     return valueOfTransaction;
 }
 
-void Transaction::setUserId(int newUserId){
-    userId = newUserId;
+void Transaction::setUserId(int userId){
+    this -> userId = userId;
 }
 
-void Transaction::setCategory(string newCategory){
-    category = newCategory;
+void Transaction::setCategory(string category){
+    this -> category = category;
 }
 
-void Transaction::setDate(int newDate){
-    date = newDate;
+void Transaction::setDate(int date){
+    this -> date = date;
 }
 
-void Transaction::setValueOfTransaction(float newValueOfTransaction){
-    valueOfTransaction = newValueOfTransaction;
+void Transaction::setValueOfTransaction(float valueOfTransaction){
+    this -> valueOfTransaction = valueOfTransaction;
 }
 
 

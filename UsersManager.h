@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class UserManager{
+class UsersManager{
 
     int idLoggedInUser;
     vector <User> users;
@@ -24,7 +24,7 @@ class UserManager{
 
 public:
 
-    UserManager(string userFileName) : userFileManager(userFileName){
+    UsersManager(string userFileName) : userFileManager(userFileName){
         users = userFileManager.loadUsersFromFile();
         idLoggedInUser = 0;
     };
@@ -37,7 +37,7 @@ public:
     bool isSomeoneLoggedIn();
 
     //temp
-    void showUsers();
+    //void showUsers();
 };
 
 #endif

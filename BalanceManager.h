@@ -28,14 +28,15 @@ class BalanceManager{
     void vectorSortingByDate(vector <Transaction> &transactions);
     void displayBalance(int fromDate, int toDate);
 
+    void loadIncomesFromFile();
+    void loadExpenseFromFile();
+    void sortingTransactionsByDate(vector <Transaction> &transaction);
 
 public:
     BalanceManager(string incomeFileName, string expensesFileName, int idLoggedInUser)
             :  incomeFileManager(incomeFileName), expenseFileManager(expensesFileName), ID_LOGGEDIN_USER(idLoggedInUser){
-                incomes = incomeFileManager.loadIncomesFromFile(ID_LOGGEDIN_USER);
-                vectorSortingByDate(incomes); //nie podoba mi sie to tutaj
-                expenses = expenseFileManager.loadExpenseFromFile(ID_LOGGEDIN_USER);
-                vectorSortingByDate(expenses);
+                loadIncomesFromFile();
+                loadExpenseFromFile();
                 setprecision(2);
     };
 

@@ -13,11 +13,11 @@ class User{
     string password;
 
 public:
-    void setId(int newId);
-    void setName(string newName);
-    void setLastname(string newLastname);
-    void setLogin(string newLogin);
-    void setPassword(string newPassword);
+    void setId(int id);
+    void setName(string name);
+    void setLastname(string lastname);
+    void setLogin(string login);
+    void setPassword(string password);
 
     int getId();
     string getName();

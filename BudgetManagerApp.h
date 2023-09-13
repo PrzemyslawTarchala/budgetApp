@@ -9,7 +9,7 @@
 using namespace std;
 
 class BudgetManagerApp{
-    UserManager userManager;
+    UsersManager userManager;
     BalanceManager *balanceManager;
     const string INCOMES_FILE_NAME;
     const string EXPENSES_FILE_NAME;
@@ -37,10 +37,10 @@ public:
     void displayPreviousMonthBalance();
     void displaySpecificPeriodOfTimeBalance();
 
-        //temp
-    void showUsers();
-    void displayAllIncomesLoggedInUser();
-    void displayAllExpensesLoggedInUser();
+    //temp
+    //void showUsers();
+    //void displayAllIncomesLoggedInUser();
+    //void displayAllExpensesLoggedInUser();
 };
 
 #endif

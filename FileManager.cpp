@@ -17,3 +17,4 @@ string FileManager::createPathToFile(string fileName){
     newPath = newPath + "\\\\" + fileName;
     return newPath;
 }
+

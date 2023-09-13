@@ -5,12 +5,8 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <vector>
-
-#include "Transaction.h"
-#include "Markup.h"
 #include "FileManager.h"
-#include "AuxiliaryMethods.h"
+#include "Transaction.h"
 
 using namespace std;
 

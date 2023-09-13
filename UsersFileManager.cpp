@@ -93,10 +93,8 @@ void UsersFileManager::saveNewUserPasswordToFile(string newPassword, int idLogge
     while(xml.FindElem("User")){
         xml.IntoElem();
         xml.FindElem("ID");
-        cout << "Current Id: " << idLoggedInUser << endl;
         if (atoi(MCD_2PCSZ(xml.GetData())) == idLoggedInUser){
             xml.FindElem("Password");
-            cout << xml.GetData();
             xml.SetData(newPassword);
             xml.Save(ACCES_PATH_TO_USER_FILE);
         }

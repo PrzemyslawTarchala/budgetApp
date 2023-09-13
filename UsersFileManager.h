@@ -2,12 +2,9 @@
 #define USERSFILEMANAGER_H
 
 #include <iostream>
-#include <vector>
 #include <fstream>
 #include <string>
-
 #include "User.h"
-#include "Markup.h"
 #include "FileManager.h"
 
 using namespace std;

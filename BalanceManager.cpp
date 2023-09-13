@@ -6,8 +6,11 @@ void BalanceManager::addIncome(){
     cout << "----------------------------\n";
     Transaction newIncome;
     newIncome = specifyNewTransaction();
-    incomes.push_back(newIncome);
     incomeFileManager.saveNewIncomeToFile(newIncome);
+    incomes.push_back(newIncome);
+    sortingTransactionsByDate(incomes);
+    cout << "Income added.\n\n";
+    system("pause");
 }
 
 void BalanceManager::addExpense(){
@@ -17,6 +20,10 @@ void BalanceManager::addExpense(){
     Transaction newExpense;
     newExpense = specifyNewTransaction();
     expenseFileManager.saveNewExpenseToFile(newExpense);
+    expenses.push_back(newExpense);
+    sortingTransactionsByDate(expenses);
+    cout << "Expense added.\n\n";
+    system("pause");
 }
 
 Transaction BalanceManager::specifyNewTransaction(){
@@ -27,11 +34,11 @@ Transaction BalanceManager::specifyNewTransaction(){
         newTransaction.setDate(getDate());
         cout << "Enter category: ";
         newTransaction.setCategory(AuxiliaryMethods::getWholeLine());
-        cout << "Enter income: ";
+        cout << "Enter value of transaction: ";
         newTransaction.setValueOfTransaction(AuxiliaryMethods::getFloatNumber());
         cout << "\nSummary: ";
         displaySingleTransaction(newTransaction);
-        cout << "\n\nConfirm 'y' / Enter again: press any key. Choice: ";
+        cout << "Confirm 'y' / Enter again: press any key. Choice: ";
     }while(AuxiliaryMethods::getSign() != 'y');
     return newTransaction;
 }
@@ -89,13 +96,6 @@ void BalanceManager::displaySpecificPeriodOfTimeBalance(){
     system("pause");
 }
 
-void BalanceManager::vectorSortingByDate(vector <Transaction> &transactions){
-    sort(transactions.begin( ), transactions.end( ), [ ]( const auto& lhs, const auto& rhs )
-    {
-       return lhs.getDate() < rhs.getDate();
-    });
-}
-
 void BalanceManager::displayAllIncomesLoggedInUser(){
     for (Transaction singleTransaction : incomes){
         displaySingleTransaction(singleTransaction);
@@ -142,7 +142,29 @@ void BalanceManager::displayBalance(int fromDate, int toDate){
 }
 
 void BalanceManager::displaySingleTransaction(Transaction singleTransaction){
-    cout << "\nDate: " << singleTransaction.getDate();
+    cout << "\nDate: " << dateAndTimeManager.displayFormatData(singleTransaction.getDate());
     cout << "\nCategory: " << singleTransaction.getCategory();
     cout << "\nValue of transaction: " << singleTransaction.getValueOfTransaction() << "\n\n";
+}
+
+void BalanceManager::loadIncomesFromFile(){
+    incomes = incomeFileManager.loadIncomesFromFile(ID_LOGGEDIN_USER);
+    sortingTransactionsByDate(incomes);
+}
+
+void BalanceManager::loadExpenseFromFile(){
+    expenses = expenseFileManager.loadExpenseFromFile(ID_LOGGEDIN_USER);
+    sortingTransactionsByDate(expenses);
+}
+
+void BalanceManager::sortingTransactionsByDate(vector <Transaction> &transactions){
+    if(transactions.empty()){
+        return;
+    }
+    else{
+        sort(transactions.begin( ), transactions.end( ), [ ]( const auto& lhs, const auto& rhs )
+        {
+           return lhs.getDate() < rhs.getDate();
+        });
+    }
 }

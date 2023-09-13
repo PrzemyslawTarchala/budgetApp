@@ -17,10 +17,10 @@ public:
     int getDate();
     float getValueOfTransaction();
 
-    void setUserId(int newUserId);
-    void setCategory(string newCategory);
-    void setDate(int newDate);
-    void setValueOfTransaction(float newValueOfTransaction);
+    void setUserId(int userId);
+    void setCategory(string category);
+    void setDate(int date);
+    void setValueOfTransaction(float valueOfTransaction);
 };
 
 #endif

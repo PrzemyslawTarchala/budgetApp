@@ -26,6 +26,8 @@ int main(){
                     break;
                 case '2': budgetAppManager.signUp();
                     break;
+                //case '3': budgetAppManager.showUsers();
+                    //break;
                 case '9': exit(0);
                     break;
                 default: cout << "Wrong choice!\n"; system ("pause");
@@ -40,8 +42,9 @@ int main(){
             cout << "3. Display current month balance\n";
             cout << "4. Display previous month balance\n";
             cout << "5. Display specific period of time balance\n";
-            cout << "6. Display all incomes of user\n";
-            cout << "7. Display all incomes of user\n";
+            //cout << "6. Display all incomes of user\n";
+            //cout << "7. Display all expenses of user\n";
+            cout << "8. Change Password\n";
             cout << "9. Exit\n";
             cout << "-----------------------------\n\n";
             cout << "Choice: ";
@@ -58,12 +61,12 @@ int main(){
                     break;
                 case '5': budgetAppManager.displaySpecificPeriodOfTimeBalance();
                     break;
-                case '6': budgetAppManager.displayAllIncomesLoggedInUser();
+                //case '6': budgetAppManager.displayAllIncomesLoggedInUser();
+                    //break;
+                //case '7': budgetAppManager.displayAllExpensesLoggedInUser();
+                    //break;
+                case '8': budgetAppManager.changeLoggedInUserPassword();
                     break;
-                case '7': budgetAppManager.displayAllExpensesLoggedInUser();
-                    break;
-                //case '8': budgetAppManager.changeLoggedInUserPassword();
-                //    break;
                 case '9': budgetAppManager.logout();
                     break;
                 default: cout << "Wrong choice!\n"; system ("pause");

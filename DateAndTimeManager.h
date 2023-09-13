@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <ctime>
+#include <string.h>
 
 #include "AuxiliaryMethods.h"
 
@@ -23,6 +24,7 @@ public:
     void getTimeFrameForCurrentMonth(int &fromDate, int &toDate);
     void getTimeFrameForPrevoiusMonth(int &fromDate, int &toDate);
     void getTimeFrameSpecificByUser(int &fromDate, int &toDate);
+    string displayFormatData(int unformatedDate);
 };
 
 #endif
