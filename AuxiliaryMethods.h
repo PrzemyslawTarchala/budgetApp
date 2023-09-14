@@ -9,16 +9,15 @@ using namespace std;
 
 class AuxiliaryMethods{
 
-
 public:
-    static string getWholeLine();
     static char getSign();
-    static float getFloatNumber();
-    static string convertIntToString(int number);
     static int getIntNumber();
+    static string getWholeLine();
+    static float getFloatNumber();
+    static int convertStringToInt(string str);
+    static string convertIntToString(int number);
     static string convertFloatToString(float number);
     static float convertStringToFloat(string str);
-    static int convertStringToInt(string str);
 
 };
 

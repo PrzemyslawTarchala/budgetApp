@@ -29,15 +29,11 @@ public:
         idLoggedInUser = 0;
     };
     int getLoggedInUserId();
-
     void signIn();
     void signUp();
     void userLogout();
     void changeLoggedInUserPassword();
     bool isSomeoneLoggedIn();
-
-    //temp
-    //void showUsers();
 };
 
 #endif

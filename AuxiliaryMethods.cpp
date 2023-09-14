@@ -26,7 +26,6 @@ float AuxiliaryMethods::getFloatNumber(){
     string input;
 LOOP:
     while(true){
-        //cout << "Enter Income: ";
         getline(cin, input);
 
         if(input == ""){

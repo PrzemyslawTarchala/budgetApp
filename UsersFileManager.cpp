@@ -8,7 +8,6 @@ vector <User> UsersFileManager::loadUsersFromFile(){
 
     ifstream userFile;
     userFile.open(ACCES_PATH_TO_USER_FILE);
-    //if(userFile)
     if(userFile.good()){
         xml.Load(ACCES_PATH_TO_USER_FILE);
         xml.FindElem();
@@ -41,11 +40,9 @@ void UsersFileManager::saveUserToFile(User userToSave){
     ifstream file;
     file.open(ACCES_PATH_TO_USER_FILE);
     if(file){
-        //cout << "file exists" << endl;
         openFileAndSaveNewUser(userToSave);
     }
     else {
-        //cout << "file doesnt exists" << endl;
         creatUsersFileAndAddFirstUser(userToSave);
     }
 }

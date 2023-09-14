@@ -5,11 +5,9 @@ void IncomeFileManager::saveNewIncomeToFile(Transaction newIncome){
     ifstream file;
     file.open(ACCES_PATH_TO_INCOME_FILE);
     if(file){
-        //cout << "file exists" << endl;
         openFileAndSaveNewIncome(newIncome);
     }
     else {
-        //cout << "file doesnt exists" << endl;
         creatIncomeFileAndAddFirstIncome(newIncome);
     }
 }
@@ -49,7 +47,7 @@ vector <Transaction> IncomeFileManager::loadIncomesFromFile(int idLoggedInUser){
 
     CMarkup xml;
     ifstream file;
-    file.open(ACCES_PATH_TO_INCOME_FILE); //to jest na tyle czesto uzywane ze mozna zrobic metode "bool isFileExist()" w pomocnicznych metodach
+    file.open(ACCES_PATH_TO_INCOME_FILE);
 
     if(file){
         vector <Transaction> incomesSpecyficUser;
