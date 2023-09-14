@@ -96,20 +96,6 @@ void BalanceManager::displaySpecificPeriodOfTimeBalance(){
     system("pause");
 }
 
-void BalanceManager::displayAllIncomesLoggedInUser(){
-    for (Transaction singleTransaction : incomes){
-        displaySingleTransaction(singleTransaction);
-    }
-    system("pause");
-}
-
-void BalanceManager::displayAllExpensesLoggedInUser(){
-    for (Transaction singleTransaction : expenses){
-        displaySingleTransaction(singleTransaction);
-    }
-    system("pause");
-}
-
 void BalanceManager::displayBalance(int fromDate, int toDate){
     int transactionIncomeNumber = 1;
     int transactionExpenseNumber = 1;

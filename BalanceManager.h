@@ -14,9 +14,9 @@ using namespace std;
 
 class BalanceManager{
 
-    const int ID_LOGGEDIN_USER;
     vector <Transaction> incomes;
     vector <Transaction> expenses;
+    const int ID_LOGGEDIN_USER;
 
     DateAndTimeManager dateAndTimeManager;
     IncomeFileManager incomeFileManager;
@@ -45,11 +45,6 @@ public:
     void displayCurrentMonthBalance();
     void displayPreviousMonthBalance();
     void displaySpecificPeriodOfTimeBalance();
-
-    //temp
-    void displayAllIncomesLoggedInUser();
-    void displayAllExpensesLoggedInUser();
 };
 
 #endif
-

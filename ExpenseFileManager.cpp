@@ -5,11 +5,9 @@ void ExpenseFileManager::saveNewExpenseToFile(Transaction newExpense){
     ifstream file;
     file.open(ACCES_PATH_TO_EXPENSE_FILE);
     if(file){
-        //cout << "file exists" << endl;
         openFileAndSaveNewExpense(newExpense);
     }
     else {
-        //cout << "file doesnt exists" << endl;
         creatExpenseFileAndAddFirstExpense(newExpense);
     }
 }
@@ -50,7 +48,7 @@ vector <Transaction> ExpenseFileManager::loadExpenseFromFile(int idLoggedInUser)
     Transaction singleTransactionFromFile;
     CMarkup xml;
     ifstream file;
-    file.open(ACCES_PATH_TO_EXPENSE_FILE); //to jest na tyle czesto uzywane ze mozna zrobic metode "bool isFileExist()" w pomocnicznych metodach
+    file.open(ACCES_PATH_TO_EXPENSE_FILE);
 
     if(file){
         xml.Load(ACCES_PATH_TO_EXPENSE_FILE);

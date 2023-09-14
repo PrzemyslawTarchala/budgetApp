@@ -26,21 +26,13 @@ public:
     int getLoggedInUserId();
     void signIn();
     void signUp();
-    bool checkIfSomeoneIsLoggedIn();
-
-    void changeLoggedInUserPassword();
     void logout();
-
+    void changeLoggedInUserPassword();
     void addIncome();
     void addExpense();
     void displayCurrentMonthBalance();
     void displayPreviousMonthBalance();
     void displaySpecificPeriodOfTimeBalance();
-
-    //temp
-    //void showUsers();
-    //void displayAllIncomesLoggedInUser();
-    //void displayAllExpensesLoggedInUser();
 };
 
 #endif

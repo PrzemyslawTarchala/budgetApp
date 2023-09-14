@@ -166,19 +166,3 @@ bool UsersManager::isSomeoneLoggedIn(){
         return false;
     }
 }
-
-
-//temp
-/*
-void UsersManager::showUsers(){
-    if(users.empty()){
-        cout << "Empty vector ";
-    }
-    else{
-        for (User singleUser : users){
-            cout << singleUser.getId() << endl;
-            cout << singleUser.getPassword() << endl;
-        }
-    }
-    system("pause");
-}*/
